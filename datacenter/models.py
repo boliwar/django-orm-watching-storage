@@ -1,4 +1,7 @@
+import locale
 from django.db import models
+from django.utils.timezone import localtime as dj_localtime, now as dj_now
+from datetime import datetime
 
 
 class Passcard(models.Model):
@@ -28,3 +31,19 @@ class Visit(models.Model):
                 if self.leaved_at else 'not leaved'
             )
         )
+
+def get_strdate_timezone(visit):
+    locale.setlocale(locale.LC_ALL, '')
+    visit_date = dj_localtime(visit.entered_at)
+    date_str = datetime.strftime(visit_date, '%d %B %Y г. %H:%M')
+    return date_str
+
+def get_duration(visit):
+    return dj_now() - dj_localtime(visit.entered_at)
+
+def format_duration(duration):
+    total_seconds = duration.total_seconds()
+    hours = int(total_seconds // 3600)
+    minutes = int((total_seconds % 3600) // 60)
+    seconds = int(total_seconds - (hours*3600 + minutes* 60))
+    return f'{hours}:{minutes:02d}:{seconds:02d}'
