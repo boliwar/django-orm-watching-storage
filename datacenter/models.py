@@ -32,6 +32,12 @@ class Visit(models.Model):
             )
         )
 
+def is_visit_long(visit, minutes=3600):
+    total_seconds = get_duration(visit).total_seconds()
+    if total_seconds > minutes:
+        return True
+    return False
+
 def get_strdate_timezone(visit):
     locale.setlocale(locale.LC_ALL, '')
     visit_date = dj_localtime(visit.entered_at)
@@ -39,7 +45,11 @@ def get_strdate_timezone(visit):
     return date_str
 
 def get_duration(visit):
-    return dj_now() - dj_localtime(visit.entered_at)
+    if visit.leaved_at:
+        end_at = visit.leaved_at
+    else:
+        end_at = dj_now()
+    return end_at - dj_localtime(visit.entered_at)
 
 def format_duration(duration):
     total_seconds = duration.total_seconds()
