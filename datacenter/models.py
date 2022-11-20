@@ -35,9 +35,7 @@ class Visit(models.Model):
 
 def is_visit_long(visit, minutes=3600):
     total_seconds = get_duration(visit).total_seconds()
-    if total_seconds > minutes:
-        return True
-    return False
+    return (total_seconds > minutes)
 
 
 def get_strdate_timezone(visit):
