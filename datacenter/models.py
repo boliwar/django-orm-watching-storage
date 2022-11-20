@@ -1,4 +1,3 @@
-import locale
 from django.db import models
 from django.utils.timezone import localtime as dj_localtime, now as dj_now
 from datetime import datetime
@@ -36,14 +35,6 @@ class Visit(models.Model):
 def is_visit_long(visit, minutes=3600):
     total_seconds = get_duration(visit).total_seconds()
     return (total_seconds > minutes)
-
-
-def get_strdate_timezone(visit):
-    locale.setlocale(locale.LC_ALL, '')
-    visit_date = dj_localtime(visit.entered_at)
-    date_str = datetime.strftime(visit_date, '%d %B %Y г. %H:%M')
-    return date_str
-
 
 def get_duration(visit):
     if visit.leaved_at:

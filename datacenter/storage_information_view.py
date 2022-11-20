@@ -1,6 +1,7 @@
 from datacenter.models import Visit
-from datacenter.models import get_duration, format_duration, get_strdate_timezone
+from datacenter.models import get_duration, format_duration, is_visit_long
 from django.shortcuts import render
+from datetime import datetime
 
 
 def storage_information_view(request):
@@ -11,8 +12,9 @@ def storage_information_view(request):
     for unclosed_visit in unclosed_visits:
         non_closed_visits.append({
             'who_entered': unclosed_visit.passcard.owner_name,
-            'entered_at': get_strdate_timezone(unclosed_visit),
+            'entered_at': datetime.strftime(unclosed_visit.entered_at, '%d %B %Y г. %H:%M'),
             'duration': format_duration(get_duration(unclosed_visit)),
+            'is_strange': is_visit_long(unclosed_visit),
         })
 
     context = {
