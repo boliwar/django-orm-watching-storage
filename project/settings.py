@@ -1,16 +1,17 @@
 import os
 from environs import Env
+import dj_database_url
 
 env = Env()
 env.read_env()
 DATABASES = {
     'default': {
-        'ENGINE': env('ENGINE'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
+        'ENGINE': env('DB_ENGINE'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
     }
 }
 

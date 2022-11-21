@@ -27,12 +27,12 @@ pip install -r requirements.txt
 
 ##### Настройки БД
 ```
-ENGINE=
-HOST=
-PORT=
-NAME=
-USER=
-PASSWORD=
+DB_ENGINE=
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
 ```
 ##### Другие настройки
 
