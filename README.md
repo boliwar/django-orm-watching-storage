@@ -39,5 +39,6 @@ DB_PASSWORD=
 ```
 DEBUG= _отладочный режим (True/False)_
 SECRET_KEY= _секретный ключ у администратора_
-ALLOWED_HOSTS=['*', '127.0.0.1']  _список доступных северов_  [Документация ALLOWED_HOSTS](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
+ALLOWED_HOSTS=['*', '127.0.0.1']  _список доступных северов_  
 ```
+[Документация ALLOWED_HOSTS](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
